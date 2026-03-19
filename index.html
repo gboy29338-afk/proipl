@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IPL Prediction Pro</title>
+
+<style>
+body{
+font-family:Arial;
+background:#000;
+color:white;
+text-align:center;
+}
+
+header{
+background:gold;
+color:black;
+padding:15px;
+font-size:24px;
+font-weight:bold;
+}
+
+.container{
+padding:20px;
+}
+
+.team-box{
+background:#111;
+padding:20px;
+margin:20px;
+border-radius:10px;
+box-shadow:0 0 10px gold;
+}
+
+textarea{
+width:90%;
+height:150px;
+padding:10px;
+margin-top:10px;
+}
+
+button{
+padding:10px 20px;
+background:gold;
+border:none;
+margin-top:10px;
+cursor:pointer;
+font-weight:bold;
+}
+
+.admin{
+display:none;
+}
+</style>
+</head>
+
+<body>
+
+<header>🏏 IPL Prediction Pro</header>
+
+<div class="container">
+
+<h2>🔥 Today Team</h2>
+
+<div class="team-box" id="teamDisplay">
+Loading...
+</div>
+
+<button onclick="showLogin()">Admin Login</button>
+
+</div>
+
+<!-- ADMIN PANEL -->
+<div class="admin" id="adminPanel">
+<h2>Admin Panel</h2>
+
+<textarea id="teamInput" placeholder="Enter today's team here..."></textarea>
+<br>
+<button onclick="saveTeam()">Update Team</button>
+
+</div>
+
+<script>
+
+// Load saved team
+let team = localStorage.getItem("teamData");
+
+if(team){
+document.getElementById("teamDisplay").innerHTML = team;
+}else{
+document.getElementById("teamDisplay").innerHTML = "No team uploaded yet";
+}
+
+// LOGIN SYSTEM
+function showLogin(){
+let pass = prompt("Enter Admin Password:");
+
+if(pass === "1234"){
+document.getElementById("adminPanel").style.display = "block";
+}else{
+alert("Wrong Password!");
+}
+}
+
+// SAVE TEAM
+function saveTeam(){
+let newTeam = document.getElementById("teamInput").value;
+
+localStorage.setItem("teamData", newTeam);
+
+document.getElementById("teamDisplay").innerHTML = newTeam;
+
+alert("Team Updated Successfully 🔥");
+}
+
+</script>
+
+</body>
+</html>
